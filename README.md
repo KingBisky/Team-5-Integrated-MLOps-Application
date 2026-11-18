@@ -1,28 +1,29 @@
-# IT3385 Team 5 – MLOps Assignment
+# IT3385 Team 5 – MLOps Project
 
-This repository contains Team 5's Machine Learning Operations (MLOps) project for IT3385.
+This repository showcases Team 5's Machine Learning Operations (MLOps) project for IT3385. The project brings three individual machine learning applications together through a shared Flask portal, supported by a reproducible development environment and an integrated deployment workflow.
 
-The project provides a shared, reproducible environment for developing, testing, integrating, and running multiple machine learning web applications from one Team 5 Flask portal.
+The project demonstrates how machine learning applications can be developed, integrated, tested, version-controlled and deployed using a consistent MLOps workflow.
 
-## Current Project Status
+## Project Overview
 
-The repository currently includes:
+The integrated portal features three machine learning applications:
 
-- A shared Team 5 Flask portal
-- Kang Bin's **Employee Burnout Predictor** integrated at `/kang-bin/`
-- Long Chen's **Employee Salary Predictor** integrated at `/long-chen/`
-- Clifton's **Mental Health Risk Predictor** integrated at `/clifton/` with single and batch prediction
-- Poetry dependency and virtual-environment management
-- Hydra runtime configuration
-- DVC dataset version tracking
-- Pytest automated tests
-- GitHub Actions Continuous Integration (CI)
-- Git / GitHub feature-branch and Pull Request workflow
-- Trained PyCaret model artefacts for the integrated applications
+- **Employee Burnout Predictor** – Kang Bin's application at `/kang-bin/`
+- **Employee Salary Predictor** – Long Chen's application at `/long-chen/`
+- **Mental Health Risk Predictor** – Clifton's application at `/clifton/`, supporting single and batch predictions
 
-> **Important:** Python dependency installation for the shared Team 5 project is controlled by **Poetry**.  
-> `pyproject.toml` declares the project dependencies and `poetry.lock` records the exact resolved environment.  
-> The project does not use separate `requirements.txt` files. All Python dependencies are managed centrally using Poetry through `pyproject.toml` and `poetry.lock`.
+The shared project also incorporates:
+
+- Poetry for dependency and virtual-environment management
+- Hydra for runtime configuration
+- DVC for dataset version tracking
+- Pytest for automated testing
+- Git and GitHub for collaborative development
+- GitHub Actions for Continuous Integration (CI)
+- PyCaret for model development and saved pipelines
+- Docker and Google Cloud Run for deployment
+
+> **Dependency management:** Poetry is the central dependency manager. `pyproject.toml` declares project dependencies, while `poetry.lock` records the resolved versions for reproducible installation. The project does not use separate `requirements.txt` files.
 
 ---
 
@@ -30,13 +31,13 @@ The repository currently includes:
 
 ## Team 5
 
-| Team Member | Dataset / Individual Work |
+| Team Member | Dataset / Individual Contribution |
 |---|---|
-| **Kang Bin** | Employee Burnout Prediction – EDA, machine learning model, Flask prediction application, and development/MLOps environment setup including Conda, Poetry, Hydra, DVC, Git branching, Pytest and CI |
+| **Kang Bin** | Employee Burnout Prediction – EDA, machine learning model, Flask application, and shared MLOps setup covering Conda, Poetry, Hydra, DVC, Git branching, Pytest and CI |
 | **Clifton** | Mental Health Risk Prediction – EDA, machine learning model and Flask prediction application |
-| Long Chen | Global AI Jobs / Employee Salary Prediction – EDA, machine learning model, Flask prediction application, and deployment environment work including containerisation and production deployment to Google Cloud Run |
+| **Long Chen** | Global AI Jobs / Employee Salary Prediction – EDA, machine learning model, Flask application, containerisation and production deployment to Google Cloud Run |
 
-Each team member owns an individual dataset and machine learning component. The applications are integrated through the shared Team 5 Flask portal while keeping each member's model, preprocessing pipeline, templates and static files separate.
+Each member developed an individual machine learning component using a separate dataset. The applications were integrated into one Team 5 Flask portal while retaining their own models, preprocessing pipelines, templates and static files.
 
 ---
 
@@ -128,40 +129,42 @@ IT3385_Team5_Assignment/
 
 | Path | Purpose |
 |---|---|
-| `src/team5_app/app.py` | Main entry point. Loads the Team 5 portal and mounts the integrated Flask applications |
-| `src/team5_app/Kang Bin/employee_burnout_app/` | Kang Bin's Employee Burnout Predictor and trained classification model |
-| `src/team5_app/Long Chen/salary_predictor_app/` | Long Chen's Employee Salary Predictor and trained regression model |
-| `src/team5_app/Clifton/mental_health_risk_app/` | Clifton's integrated single + batch Mental Health Risk Predictor and trained pipeline |
-| `config/` | Hydra configuration for server and application runtime settings |
-| `data/raw/` | Team datasets; full CSV files are locally stored while `.dvc` metadata is tracked by Git |
+| `src/team5_app/app.py` | Main entry point for the Team 5 portal and integrated Flask applications |
+| `src/team5_app/Kang Bin/employee_burnout_app/` | Employee Burnout Predictor and trained classification model |
+| `src/team5_app/Long Chen/salary_predictor_app/` | Employee Salary Predictor and trained regression model |
+| `src/team5_app/Clifton/mental_health_risk_app/` | Mental Health Risk Predictor, including single and batch prediction |
+| `config/` | Hydra configuration for application and server settings |
+| `data/raw/` | Raw datasets and their DVC metadata |
 | `notebooks/` | EDA and model-development notebooks |
 | `tests/test_environment.py` | Automated environment, project-structure and Hydra configuration tests |
 | `.github/workflows/ci.yml` | GitHub Actions CI workflow |
-| `pyproject.toml` | Declares the project's direct Python dependencies and constraints |
-| `poetry.lock` | Records the exact resolved dependency graph used for reproducible installation |
+| `pyproject.toml` | Direct Python dependencies and version constraints |
+| `poetry.lock` | Exact resolved dependency versions for reproducible installation |
 
----
-
-# MLOps Tools Used
+## MLOps Tools Used
 
 | Tool | Purpose |
 |---|---|
-| Cookiecutter | Used to create the initial standard ML project structure |
-| Conda | Provides the base Python 3.10 interpreter |
-| Poetry | **Primary dependency manager** and project virtual-environment manager |
-| Hydra | Manages reusable server and application runtime configuration |
-| DVC | Versions the raw machine learning datasets through `.dvc` metadata |
-| Git | Local source-code version control |
-| GitHub | Shared Team 5 source-code repository and Pull Request workflow |
+| Cookiecutter | Initial standard ML project structure |
+| Conda | Base Python 3.10 interpreter |
+| Poetry | Dependency and project virtual-environment management |
+| Hydra | Reusable server and application runtime configuration |
+| DVC | Dataset version tracking through `.dvc` metadata |
+| Git | Source-code version control |
+| GitHub | Shared repository and Pull Request collaboration |
 | GitHub Actions | Continuous Integration |
 | Pytest | Automated environment and configuration testing |
-| Flask | Team portal and web application framework |
-| PyCaret | Machine learning model development and saved pipelines |
+| Flask | Portal and web application framework |
+| PyCaret | Machine learning development and saved pipelines |
 | Jupyter | EDA and model experimentation |
+| Docker | Application containerisation |
+| Google Cloud Run | Production hosting |
 
 ---
 
 # C. Deployment Guide
+
+This section documents how to recreate the development environment, run the integrated application and deploy updates.
 
 ## 1. Prerequisites
 
@@ -169,6 +172,7 @@ Install:
 
 - Git
 - Anaconda or Miniconda
+- Python 3.10 through Conda
 
 Check Git:
 
@@ -176,142 +180,78 @@ Check Git:
 git --version
 ```
 
-The project requires **Python 3.10**.
-
----
-
 ## 2. Clone the Repository
 
-Use `git clone` rather than downloading the repository as a ZIP file.
+Clone the repository to retain its Git history, branches and collaboration workflow.
 
-Cloning the repository keeps the Git history, branches, commits, and allows team members to use normal Git commands such as `git pull`, `git push`, and the Pull Request workflow.
-
-### Step 1: Navigate to the folder where you want to store the project
-
-For example, if you want to store the project on your Desktop, first open Command Prompt, PowerShell, Git Bash, or Anaconda Prompt and navigate to your Desktop:
+Navigate to your preferred directory, for example:
 
 ```bash
 cd Desktop
 ```
 
-Your terminal should now be inside a location similar to:
-
-```text
-C:\Users\<USERNAME>\Desktop
-```
-
-> Replace `<USERNAME>` with your own Windows username where applicable.
-
-### Step 2: Clone the Team 5 GitHub repository
-
-Run:
+Clone the repository:
 
 ```bash
 git clone https://github.com/KingBisky/IT3385_Team5_Assignment.git
 ```
 
-Git will create a new folder named:
-
-```text
-IT3385_Team5_Assignment
-```
-
-The resulting folder location will be similar to:
-
-```text
-C:\Users\<USERNAME>\Desktop\IT3385_Team5_Assignment
-```
-
-### Step 3: Enter the cloned project folder
-
-Run:
+Enter the project folder:
 
 ```bash
 cd IT3385_Team5_Assignment
 ```
 
-You should now be inside the repository root.
-
-For example:
-
-```text
-C:\Users\<USERNAME>\Desktop\IT3385_Team5_Assignment
-```
-
-### Step 4: Confirm that the repository was cloned successfully
-
-Run:
+Verify the repository:
 
 ```bash
 git status
-```
-
-You should see output similar to:
-
-```text
-On branch main
-Your branch is up to date with 'origin/main'.
-```
-
-You can also confirm that the GitHub remote is configured correctly:
-
-```bash
 git remote -v
 ```
 
-Expected repository URL:
+The configured remote should point to:
 
 ```text
 https://github.com/KingBisky/IT3385_Team5_Assignment.git
 ```
 
-After this, continue with the environment setup steps.
-
 ## 3. Create the Conda Environment
 
-Create the base Python 3.10 environment:
+Create and activate the Python 3.10 environment:
 
 ```bash
 conda create -n mlops_assignment python=3.10
-```
-
-Activate it:
-
-```bash
 conda activate mlops_assignment
 ```
 
-Verify:
+Verify the Python version:
 
 ```bash
 python --version
 ```
 
-Expected:
+Expected version:
 
 ```text
 Python 3.10.x
 ```
 
-### Conda vs Poetry
+### Conda and Poetry Responsibilities
 
-The responsibilities are intentionally separated:
+The project separates interpreter management from package management:
 
 ```text
 Conda
-  └── supplies the Python 3.10 interpreter
+  └── Provides the Python 3.10 interpreter
 
 Poetry
-  ├── creates/manages the project virtual environment
-  ├── installs Python packages
-  ├── resolves dependency compatibility
-  └── reproduces the versions recorded in poetry.lock
+  ├── Manages the project virtual environment
+  ├── Installs Python dependencies
+  ├── Resolves package compatibility
+  └── Reproduces versions recorded in poetry.lock
 ```
 
-**Do not split normal project dependency installation between Conda, Poetry and pip.**  
-After the base Python interpreter is available, use **Poetry** for the Team 5 project's Python packages.
-
----
+Conda provides the base interpreter; Poetry manages the project's Python packages.
 
 ## 4. Install Poetry
 
@@ -327,62 +267,52 @@ Verify:
 poetry --version
 ```
 
----
+## 5. Link Poetry to the Conda Interpreter
 
-## 5. Link Poetry to the Conda Python 3.10 Interpreter
-
-Find the interpreter used by the active Conda environment:
+Find the active Python interpreter:
 
 ```bash
 python -c "import sys; print(sys.executable)"
 ```
 
-Example on Windows:
+Example Windows path:
 
 ```text
 C:\Users\<USERNAME>\anaconda3\envs\mlops_assignment\python.exe
 ```
 
-Tell Poetry to use the path returned on **your own computer**:
+Configure Poetry to use the path returned on your computer:
 
 ```bash
 poetry env use "C:\Users\<USERNAME>\anaconda3\envs\mlops_assignment\python.exe"
 ```
 
-Verify:
+Verify the environment:
 
 ```bash
 poetry env info
 ```
 
-The Poetry environment should be valid and should use Python 3.10.
+## 6. Dependency Management with Poetry
 
----
+### 6.1 Dependency Files
 
-# 6. Dependency Management with Poetry
-
-## 6.1 Source of Truth
-
-The Team 5 project uses **Poetry exclusively for Python dependency management**.
-
-The dependency files are:
+Poetry is the central dependency manager for the Team 5 project.
 
 | File | Purpose |
 |---|---|
-| `pyproject.toml` | Declares the project's direct dependencies and version constraints |
-| `poetry.lock` | Stores the exact resolved dependency versions used to reproduce the environment |
+| `pyproject.toml` | Declares direct dependencies and version constraints |
+| `poetry.lock` | Records the exact resolved dependency versions |
 
-The project does **not** use separate `requirements.txt` files.
-
-All team members should install the project environment using:
+Install the committed environment with:
 
 ```bash
 poetry install --no-root
 ```
 
-Do not use `pip install -r requirements.txt` or manually install packages with `pip`, as this can cause the local environment to differ from the versions recorded in `poetry.lock`.
+The project does not use separate `requirements.txt` files. Avoid manually installing project dependencies with pip, as this can cause differences between local environments and the committed lock file.
 
-When adding, removing, or changing dependencies, use Poetry commands such as:
+Use Poetry to manage dependency changes:
 
 ```bash
 poetry add <package>
@@ -390,26 +320,13 @@ poetry remove <package>
 poetry update <package>
 ```
 
-Whenever dependency resolution changes, both `pyproject.toml` and `poetry.lock` must be committed to Git.
+Whenever dependency resolution changes, commit both `pyproject.toml` and `poetry.lock`.
 
----
+### 6.2 Dependency Compatibility
 
-## 6.2 Why Exact Versions Matter for This Project
+The repository contains saved PyCaret model pipelines (`.pkl` files). These pipelines rely on compatible versions of machine learning and preprocessing libraries, including scikit-learn, pandas, NumPy, LightGBM and category-encoders.
 
-The repository contains saved PyCaret model pipelines (`.pkl` files). A serialized ML pipeline can depend on the exact or compatible versions of:
-
-- PyCaret
-- scikit-learn
-- pandas
-- NumPy
-- category-encoders
-- LightGBM
-- CatBoost
-- related preprocessing libraries
-
-This is especially important for packages such as **LightGBM**, which includes native compiled code.
-
-Kang Bin's saved Employee Burnout model requires the compatible model environment used by the application. In the current fixed environment, the important model-related versions include:
+Important project versions include:
 
 | Dependency | Project Version / Constraint |
 |---|---:|
@@ -423,90 +340,67 @@ Kang Bin's saved Employee Burnout model requires the compatible model environmen
 | LightGBM | `4.6.0` |
 | CatBoost | `1.2.5` |
 
-> `lightgbm==4.6.0` and `category-encoders==2.7.0` are intentional compatibility pins for the saved Employee Burnout pipeline. Do not upgrade them casually without re-testing model loading and prediction.
+> `lightgbm==4.6.0` and `category-encoders==2.7.0` are intentional compatibility pins for the saved Employee Burnout pipeline. Changes to these versions should be followed by model-loading and prediction tests.
 
-The complete dependency graph contains many transitive packages. **Do not try to reproduce that graph manually from this table.** The authoritative reproducible environment is the committed `poetry.lock`.
+The committed `poetry.lock` remains the authoritative source for the complete dependency graph, including transitive packages.
 
----
+### 6.3 Install and Verify Dependencies
 
-## 6.3 First-Time Installation
-
-After cloning the repository and configuring Poetry:
+Install:
 
 ```bash
 poetry install --no-root
 ```
 
-This command reads the committed lock file and installs the environment represented by the repository.
-
-Then verify the main ML packages:
+Verify the main packages:
 
 ```bash
 poetry run python -c "import pycaret, flask, pandas, numpy, sklearn, hydra, lightgbm, category_encoders; print('TEAM 5 ENVIRONMENT OK'); print('LightGBM:', lightgbm.__version__); print('category-encoders:', category_encoders.__version__)"
 ```
 
-Expected compatibility versions include:
-
-```text
-TEAM 5 ENVIRONMENT OK
-LightGBM: 4.6.0
-category-encoders: 2.7.0
-```
-
-Also check Poetry metadata:
+Check the Poetry configuration:
 
 ```bash
 poetry check
 ```
 
----
+### 6.4 Dependency Management Guidelines
 
-## 6.4 Rules for Every Team Member
-
-### Do
+**Recommended practices**
 
 - Use `poetry install --no-root` after cloning or pulling dependency changes.
-- Use `poetry add <package>` to add a dependency.
-- Use `poetry remove <package>` to remove a dependency.
-- Pin a specific version when a saved ML model requires it.
-- Commit **both** `pyproject.toml` and `poetry.lock` whenever dependency resolution changes.
-- Run automated tests after dependency changes.
-- Run the integrated web application after model-related dependency changes.
-- Pull the latest `main` before starting a dependency update.
+- Use `poetry add` and `poetry remove` to manage packages.
+- Pin versions when required for saved model compatibility.
+- Commit both Poetry dependency files after changes.
+- Run automated tests and check the integrated application after dependency updates.
 
-### Do Not
+**Avoid**
 
-- Do not use `pip install` as a replacement for Poetry dependency management.
-- Do not manually edit `poetry.lock`.
-- Do not delete `poetry.lock` just to make an installation error disappear.
-- Do not run `poetry update` casually; it may upgrade many resolved packages.
-- Do not upgrade PyCaret, scikit-learn, LightGBM, CatBoost, NumPy, pandas or encoders without retesting the saved models.
-- Do not commit only `pyproject.toml` while forgetting `poetry.lock`.
-- Do not create separate component-level `requirements.txt` files; dependency management is centralised through Poetry.
+- Using pip as a replacement for Poetry.
+- Manually editing or deleting `poetry.lock`.
+- Running `poetry update` without considering compatibility.
+- Upgrading PyCaret, scikit-learn, LightGBM, CatBoost, NumPy, pandas or encoders without retesting saved models.
+- Creating separate component-level `requirements.txt` files.
 
----
-
-## 6.5 Common Poetry Commands
+### 6.5 Common Poetry Commands
 
 | Action | Command |
 |---|---|
-| Install the committed environment | `poetry install --no-root` |
+| Install committed environment | `poetry install --no-root` |
 | Add a dependency | `poetry add <package>` |
 | Add an exact version | `poetry add "<package>==<version>"` |
-| Add a development dependency | `poetry add --group dev <package>` |
+| Add development dependency | `poetry add --group dev <package>` |
 | Remove a dependency | `poetry remove <package>` |
-| Intentionally update one dependency | `poetry update <package>` |
-| Intentionally update all allowed dependencies | `poetry update` |
-| Show installed dependency versions | `poetry show` |
-| Show one installed package | `poetry show <package>` |
-| Validate Poetry configuration | `poetry check` |
-| Show the Poetry environment | `poetry env info` |
+| Update one dependency | `poetry update <package>` |
+| Update allowed dependencies | `poetry update` |
+| Show installed dependencies | `poetry show` |
+| Show a specific package | `poetry show <package>` |
+| Validate configuration | `poetry check` |
+| Inspect environment | `poetry env info` |
 
----
+### 6.6 Dependency Update Workflow
 
-## 6.6 Correct Dependency-Change Workflow
-
-Before changing a dependency:
+Create a feature branch before making dependency changes:
 
 ```bash
 git switch main
@@ -514,51 +408,32 @@ git pull origin main
 git switch -c feature/dependency-update
 ```
 
-Make the dependency change using Poetry. For example:
+Make the change using Poetry. For example:
 
 ```bash
 poetry add "lightgbm==4.6.0" "category-encoders==2.7.0"
 ```
 
-Install/confirm the resolved environment:
+Install and test:
 
 ```bash
 poetry install --no-root
-```
-
-Run tests:
-
-```bash
 poetry run pytest tests -v
-```
-
-Start the application and test both integrated models:
-
-```bash
 poetry run python src/team5_app/app.py
 ```
 
-Review the dependency-file changes:
+Review and commit both dependency files:
 
 ```bash
 git diff -- pyproject.toml poetry.lock
-```
-
-Commit **both** files:
-
-```bash
 git add pyproject.toml poetry.lock
 git commit -m "Update model dependency compatibility"
 git push -u origin feature/dependency-update
 ```
 
-Then create a Pull Request into `main`.
+Create a Pull Request into `main` after pushing.
 
----
-
-## 6.7 What to Do After Pulling Dependency Changes
-
-If another team member changed dependencies and committed both Poetry files:
+When pulling dependency changes made by another team member, synchronise your environment with:
 
 ```bash
 git pull origin main
@@ -566,104 +441,88 @@ poetry install --no-root
 poetry run pytest tests -v
 ```
 
-There is normally **no need** to run `poetry add`, `pip install`, or `poetry update`.
+### 6.7 Troubleshooting
 
-`poetry install --no-root` is the command that synchronises your local environment with the repository's committed dependency state.
-
----
-
-## 6.8 Troubleshooting Dependency Problems
-
-Check which Python Poetry is using:
+Inspect the Python version and Poetry environment:
 
 ```bash
 poetry run python --version
 poetry env info
 ```
 
-Check critical model libraries:
+Check important ML package versions:
 
 ```bash
 poetry run python -c "import pycaret, sklearn, lightgbm, category_encoders; print('PyCaret:', pycaret.__version__); print('scikit-learn:', sklearn.__version__); print('LightGBM:', lightgbm.__version__); print('category-encoders:', category_encoders.__version__)"
 ```
 
-If your environment differs from the repository:
+If the local environment differs from the repository:
 
-1. Pull the latest branch.
-2. Confirm `pyproject.toml` and `poetry.lock` are both present.
+1. Pull the latest changes.
+2. Confirm both Poetry files are present.
 3. Run `poetry install --no-root`.
 4. Run the test suite.
-5. Test a real prediction in the integrated application.
+5. Test an actual prediction through the application.
 
-Do not solve version mismatches by installing a second copy of a library with pip.
+## 7. Run Automated Tests
 
----
-
-# 7. Run Automated Tests
-
-Run:
+Run the test suite:
 
 ```bash
 poetry run pytest tests -v
 ```
 
-The current test suite validates:
+The tests cover:
 
-- Required shared project files and folders
-- DVC metadata for all three team datasets
+- Required project files and folders
+- DVC metadata for all three datasets
 - Hydra default configuration composition
 - Default server configuration
 - Application runtime configuration
 - Hydra command-line overrides
 
-A successful run should currently report:
+The recorded test result was:
 
 ```text
 3 passed
 ```
 
----
+## 8. Load the Models and Start the Web Application
 
-# 8. Load the Models and Start the Web Application
-
-The trained model artefacts are already stored inside their application folders:
+The trained model artefacts are stored in their respective application folders:
 
 ```text
 src/team5_app/Kang Bin/employee_burnout_app/employee_burnout_final_model.pkl
+
 src/team5_app/Clifton/mental_health_risk_app/clifton_mental_health_risk_final_model.pkl
+
 src/team5_app/Long Chen/salary_predictor_app/employee_salary_final_model.pkl
 ```
 
-You do **not** need to retrain the models before running the application.
+The saved models allow the applications to generate predictions without retraining.
 
-From the repository root:
+From the repository root, start the integrated portal:
 
 ```bash
 poetry run python src/team5_app/app.py
 ```
 
-The integrated application loads the teammate Flask modules and their saved model pipelines.
-
-Open:
+Open the local application:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-Available routes:
+| Route | Application |
+|---|---|
+| `/` | Team 5 portal |
+| `/kang-bin/` | Employee Burnout Predictor |
+| `/long-chen/` | Employee Salary Predictor |
+| `/clifton/` | Mental Health Risk Predictor |
 
-| Route | Component | Current Status |
-|---|---|---|
-| `/` | Team 5 portal | Live |
-| `/kang-bin/` | Employee Burnout Predictor | Live |
-| `/long-chen/` | Employee Salary Predictor | Live |
-| `/clifton/` | Mental Health Risk Predictor | Live in integrated source (redeploy final revision) |
+## 9. Hydra Runtime Configuration
 
----
-
-# 9. Hydra Runtime Configuration
-
-Hydra separates runtime settings from Python application code.
+Hydra separates runtime settings from application code.
 
 ```text
 config/
@@ -675,7 +534,7 @@ config/
     └── development.yaml
 ```
 
-## Default Application Settings
+### Default Application Settings
 
 `config/app/default.yaml`:
 
@@ -688,16 +547,9 @@ batch:
   preview_rows: 20
 ```
 
-These values are applied to the integrated Employee Burnout Predictor through its runtime configuration function.
+These settings control the maximum CSV upload size, batch-result lifetime, processing chunk size and preview row count. They are applied to the integrated Employee Burnout Predictor through its runtime configuration function.
 
-They control:
-
-- maximum CSV upload size
-- generated batch-result lifetime
-- batch processing chunk size
-- number of preview rows displayed
-
-## Default Local Server
+### Local Server Configuration
 
 `config/server/local.yaml`:
 
@@ -709,45 +561,43 @@ use_debugger: false
 threaded: true
 ```
 
-## Development Server Profile
+### Development Server Profile
 
-Run:
+Run the development profile with:
 
 ```bash
 poetry run python src/team5_app/app.py server=development
 ```
 
-The development profile enables the Flask/Werkzeug reloader and debugger settings defined in `config/server/development.yaml`.
+This uses the Flask/Werkzeug reloader and debugger settings defined in `config/server/development.yaml`.
 
-## Command-Line Overrides
+### Command-Line Overrides
 
-Example – use port `5050`:
+Change the server port:
 
 ```bash
 poetry run python src/team5_app/app.py server.port=5050
 ```
 
-Example – display only 5 batch preview rows:
+Change the batch preview size:
 
 ```bash
 poetry run python src/team5_app/app.py app.batch.preview_rows=5
 ```
 
-Multiple overrides can be combined:
+Combine multiple overrides:
 
 ```bash
 poetry run python src/team5_app/app.py server.port=5050 app.max_upload_mb=64 app.batch.chunk_size=10000 app.batch.preview_rows=50
 ```
 
-Hydra is configured with `hydra.job.chdir: false`, so starting the application does not move the process into a different working directory.
+Hydra uses `hydra.job.chdir: false`, so starting the application does not change the process working directory.
 
----
+## 10. Jupyter Notebook Setup
 
-# 10. Jupyter Notebook Setup
+The notebooks use the same Poetry-managed environment as the web application.
 
-The notebooks should use the same Poetry-managed environment as the web application.
-
-Register a kernel:
+Register a Jupyter kernel:
 
 ```bash
 poetry run python -m ipykernel install --user --name it3385-team5-poetry --display-name "Python (IT3385 Team 5 - Poetry)"
@@ -759,28 +609,27 @@ Launch Jupyter:
 poetry run jupyter notebook
 ```
 
-Select:
+Select the kernel:
 
 ```text
 Python (IT3385 Team 5 - Poetry)
 ```
 
-Current notebooks include:
+Project notebooks:
 
 ```text
 notebooks/Kang Bin/KangBin_Task1&2_Final.ipynb
+
 notebooks/Long Chen/LongChen_Task1&2_Final.ipynb.ipynb
 ```
 
-Using the Poetry kernel helps prevent notebook experiments from silently using package versions that differ from the deployed application.
+Using the Poetry kernel helps keep notebook experiments consistent with the application's package environment.
 
----
+## 11. DVC Data Version Control
 
-# 11. DVC Data Version Control
+DVC tracks the raw machine learning datasets through metadata files committed to Git. The full CSV files are excluded from normal Git tracking.
 
-The full raw CSV files are intentionally excluded from normal Git tracking.
-
-DVC metadata stored in Git:
+Tracked DVC metadata:
 
 ```text
 data/raw/Kang Bin/tech_mental_health_burnout.csv.dvc
@@ -788,7 +637,7 @@ data/raw/Clifton/mental_health_risk_dataset.csv.dvc
 data/raw/Long Chen/global_ai_jobs.csv.dvc
 ```
 
-Local raw-data locations:
+Corresponding local dataset files:
 
 ```text
 data/raw/Kang Bin/tech_mental_health_burnout.csv
@@ -796,13 +645,13 @@ data/raw/Clifton/mental_health_risk_dataset.csv
 data/raw/Long Chen/global_ai_jobs.csv
 ```
 
-Check DVC status:
+Check dataset tracking status:
 
 ```bash
 poetry run dvc status
 ```
 
-If a dataset changes, update only the relevant DVC metadata. Example:
+Example of updating a dataset:
 
 ```bash
 poetry run dvc add "data/raw/Kang Bin/tech_mental_health_burnout.csv"
@@ -810,25 +659,15 @@ git add "data/raw/Kang Bin/tech_mental_health_burnout.csv.dvc"
 git commit -m "Update Kang Bin dataset version"
 ```
 
-## Important DVC Limitation
+### DVC Storage Limitation
 
-The current repository uses local DVC tracking and does **not** currently define a shared DVC remote.
+The repository uses local DVC tracking and does not currently define a shared DVC remote. Cloning the Git repository therefore provides the `.dvc` metadata but does not automatically download the full raw datasets.
 
-Therefore, cloning the Git repository gives a user the `.dvc` metadata but does not automatically download the full raw CSV datasets.
+The saved `.pkl` model artefacts are stored with the applications, allowing predictions to run without retrieving the raw training datasets or retraining the models.
 
-The already-trained `.pkl` model artefacts are stored with the application and can still be used to run predictions without retraining from the raw data.
+## 12. Git and Team Collaboration Workflow
 
----
-
-# 12. Git and Team Collaboration Workflow
-
-The stable integration branch is:
-
-```text
-main
-```
-
-Development should normally use feature branches.
+The `main` branch serves as the stable integration branch. Development work is organised through feature branches.
 
 Start new work:
 
@@ -838,7 +677,7 @@ git pull origin main
 git switch -c feature/<branch-name>
 ```
 
-Examples:
+Example branches:
 
 ```bash
 git switch -c feature/kang-bin
@@ -846,7 +685,7 @@ git switch -c feature/clifton
 git switch -c feature/long-chen
 ```
 
-Commit and push:
+Commit and push changes:
 
 ```bash
 git status
@@ -855,40 +694,36 @@ git commit -m "Describe the changes made"
 git push -u origin feature/<branch-name>
 ```
 
-After pushing:
+After pushing, create a Pull Request on GitHub:
 
-1. Open the GitHub repository.
-2. Create a Pull Request.
-3. Set `base: main`.
-4. Set `compare: feature/<branch-name>`.
-5. Wait for GitHub Actions CI.
-6. Review the changed files.
-7. Merge only after the checks pass.
+1. Set `base: main`.
+2. Set `compare: feature/<branch-name>`.
+3. Review the changed files.
+4. Allow GitHub Actions CI to run.
+5. Merge after the checks pass.
 
-After the merge:
+Synchronise the local main branch after merging:
 
 ```bash
 git switch main
 git pull origin main
 ```
 
----
+## 13. Continuous Integration
 
-# 13. Continuous Integration
-
-The CI workflow is:
+The GitHub Actions workflow is defined in:
 
 ```text
 .github/workflows/ci.yml
 ```
 
-GitHub Actions runs for:
+It runs for:
 
-- pushes to `main`
-- pushes to `feature/**`
+- Pushes to `main`
+- Pushes to `feature/**`
 - Pull Requests targeting `main`
 
-Current CI flow:
+The CI workflow follows this process:
 
 ```text
 Git push / Pull Request
@@ -910,71 +745,56 @@ poetry run pytest tests -v
 PASS / FAIL
 ```
 
-This checks whether the repository can reproduce the shared environment before changes are merged.
+This provides an automated check that the shared environment can be installed and the project tests can pass before changes are merged.
 
----
+## 14. Deployment to Google Cloud Run
 
-# 14. Deployment Status and Instructions
+The integrated Team 5 application is containerised with Docker and deployed to Google Cloud Run. Its Python dependencies are managed through Poetry and the committed lock file.
 
-The repository contains Continuous Integration via GitHub Actions and is deployed to production on Google Cloud Run. The integrated Team 5 application is containerised with Docker and served via Poetry-managed dependencies. The verified production URL is listed in Section E.
+The deployment environment uses:
 
-For a deployment platform, the deployment must:
+- Python 3.10
+- Poetry-managed dependencies
+- Saved `.pkl` model artefacts
+- An application host and port configured for the deployment platform
+- Google Cloud Run for production hosting
 
-1. Use Python 3.10.
-2. Install Poetry.
-3. Install dependencies from the committed lock file:
-   ```bash
-   poetry install --no-root
-   ```
-4. Start the integrated application:
-   ```bash
-   poetry run python src/team5_app/app.py
-   ```
-5. Provide the application with a host/port configuration appropriate for the selected platform.
-6. Keep the saved `.pkl` model files available at their repository-relative paths.
-7. After the final redeploy, verify `/`, `/kang-bin/`, `/clifton/`, and `/long-chen/` on the deployed Cloud Run revision; `scripts/verify_clifton_deployment.py` automates Clifton's single + batch smoke checks.
+### Redeploying After Changes
 
+The following steps describe how to build and deploy an updated application.
 
-## Deploying After Changes
+**Step 1: Install the Google Cloud CLI**
 
-Once a change has been pushed to `main`, redeploy the updated application to Cloud Run with the following steps.
-
-### Step 1: Install the Google Cloud CLI
-
-If not already installed, download it from:
+Installation guide:
 
 https://cloud.google.com/sdk/docs/install
 
-> If the installer is named `GoogleCloudSDKInstaller (1)`, the CLI is most likely already installed on your machine.
-
-### Step 2: Navigate to the project root
+**Step 2: Navigate to the project root**
 
 ```bash
-cd [add your path here]/IT3385_Team5_Assignment
+cd [your-path]/IT3385_Team5_Assignment
 ```
 
-### Step 3: Confirm the required files are present
+**Step 3: Confirm the required files are present**
 
 ```bash
 dir Dockerfile pyproject.toml poetry.lock
 ```
 
-All three files must be listed before continuing.
-
-### Step 4: Authenticate and set the active project
+**Step 4: Authenticate and select the Google Cloud project**
 
 ```bash
 gcloud auth login
 gcloud config set project it3385-team5-assignment1
 ```
 
-### Step 5: Build the updated container image
+**Step 5: Build the container image**
 
 ```bash
 gcloud builds submit --tag gcr.io/it3385-team5-assignment1/team5-app
 ```
 
-### Step 6: Deploy the new image to Cloud Run
+**Step 6: Deploy to Cloud Run**
 
 ```bash
 gcloud run deploy team5-app \
@@ -987,85 +807,82 @@ gcloud run deploy team5-app \
   --allow-unauthenticated
 ```
 
-Cloud Run rolls out a new revision at the existing production URL — no URL change is needed after a redeploy.
+Cloud Run creates a new revision using the updated image. The service retains its existing production URL.
 
-
-> **Submission requirement:** the final assignment requires a deployed web application URL. Do not leave the deployment URL as `TODO` in the submitted version.
 ---
 
 # D. Users Manual
 
 ## 1. Access the Team 5 Portal
 
-Open the deployed application:
+<https://team5-app-873480729550.asia-southeast1.run.app>
 
-```text
-https://team5-app-873480729550.asia-southeast1.run.app
+The home page provides access to all three integrated machine learning applications.
+
+The portal can also be run locally:
+
+```bash
+poetry run python src/team5_app/app.py
 ```
 
-The home page displays the Team 5 machine learning applications.
-
-> The application can also be run locally with `poetry run python src/team5_app/app.py`, available at `http://127.0.0.1:5000` — see **Section C** for local setup instructions.
-
----
-
-# 2. Kang Bin – Employee Burnout Predictor
-
-Open:
+Local URL:
 
 ```text
-https://team5-app-873480729550.asia-southeast1.run.app/kang-bin/
+http://127.0.0.1:5000
 ```
 
-or
+See Section C for environment setup instructions.
+
+## 2. Kang Bin – Employee Burnout Predictor
+
+**Application URL:**
+
+<https://team5-app-873480729550.asia-southeast1.run.app/kang-bin/>
+
+Local route:
 
 ```text
 http://127.0.0.1:5000/kang-bin/
 ```
 
-The model is loaded from:
+Model artefact:
 
 ```text
 src/team5_app/Kang Bin/employee_burnout_app/employee_burnout_final_model.pkl
 ```
 
-## Single Prediction
+### Single Prediction
 
 1. Open the Employee Burnout Predictor.
 2. Complete the employee profile, workload/environment and wellbeing fields.
-3. Select categorical values using the provided options.
-4. Keep numeric values within the allowed range displayed by the form.
-5. Submit the prediction form.
-6. The saved classification pipeline generates the result.
+3. Select categorical values from the available options.
+4. Enter numeric values within the displayed ranges.
+5. Submit the form to generate a prediction.
 
-The application validates all 23 model inputs before prediction.
+The application validates all 23 model inputs before passing them to the saved classification pipeline.
 
-### Output
+**Prediction output:**
 
-The prediction is presented as one of:
+- Low
+- Moderate
+- High
+- Prediction confidence, when provided by the model pipeline
 
-- **Low**
-- **Moderate**
-- **High**
+The output is a model prediction based on the submitted features and should not be interpreted as a medical diagnosis.
 
-A prediction confidence value is displayed when the model pipeline provides one.
+### Batch Prediction
 
-The output is a model prediction for the submitted feature values; it should not be interpreted as a medical diagnosis.
+The application also supports CSV-based batch prediction:
 
-## Batch Prediction
+1. Open the batch prediction section.
+2. Download or use the provided CSV template.
+3. Enter one employee per row, keeping the required column names unchanged.
+4. Upload the CSV file.
+5. Start batch prediction.
+6. Review the result preview and summary.
+7. Download the generated result CSV.
 
-The application also supports CSV batch prediction.
-
-1. Open the batch section.
-2. Download/use the application's batch CSV template.
-3. Fill one employee per row.
-4. Keep the required column names unchanged.
-5. Upload the `.csv` file.
-6. Start batch prediction.
-7. Review the on-screen preview and summary.
-8. Download the generated result CSV.
-
-Generated batch output can include:
+Batch output can include:
 
 ```text
 predicted_burnout_class
@@ -1073,62 +890,58 @@ predicted_burnout_level
 prediction_confidence
 ```
 
-Default batch settings are managed by Hydra:
+Default Hydra batch settings:
 
-```text
-Maximum upload: 32 MB
-Chunk size:     5000 rows
-Preview:        20 rows
-Result TTL:     21600 seconds (6 hours)
-```
+| Setting | Value |
+|---|---:|
+| Maximum upload | 32 MB |
+| Chunk size | 5,000 rows |
+| Preview | 20 rows |
+| Result TTL | 21,600 seconds (6 hours) |
 
----
+## 3. Long Chen – Employee Salary Predictor
 
-# 3. Long Chen – Employee Salary Predictor
+**Application URL:**
 
-Open:
+<https://team5-app-873480729550.asia-southeast1.run.app/long-chen/>
 
-```text
-https://team5-app-873480729550.asia-southeast1.run.app/long-chen/
-```
-
-or
+Local route:
 
 ```text
 http://127.0.0.1:5000/long-chen/
 ```
 
-The model is loaded from:
+Model artefact:
 
 ```text
 src/team5_app/Long Chen/salary_predictor_app/employee_salary_final_model.pkl
 ```
 
-## Single Prediction
+### Single Prediction
 
 1. Open the Employee Salary Predictor.
-2. Enter/select the requested role, experience, company, compensation and market-related inputs.
+2. Enter or select the requested role, experience, company, compensation and market-related inputs.
 3. Submit or change the values as supported by the interface.
 4. The saved regression pipeline generates the salary estimate.
 
-### Output
+**Prediction output**
 
-The prediction endpoint returns the estimated salary in USD and formats it as a dollar value.
+The application returns an estimated salary in USD, formatted as a dollar value.
 
-Example format:
+Example:
 
 ```text
 $120,000
 ```
 
-The result is a model estimate based on the supplied features and training data; it is not a guaranteed salary offer or market quote.
+The result is a model estimate based on the supplied features and training data, not a guaranteed salary offer or market quote.
 
-## Batch Prediction
+### Batch Prediction
 
 1. Open the Long Chen batch page.
-2. Upload a valid CSV containing the required model columns.
+2. Upload a CSV containing the required model columns.
 3. Start batch prediction.
-4. Review the generated result.
+4. Review the generated results.
 5. Download the salary prediction CSV.
 
 The batch output includes:
@@ -1137,91 +950,113 @@ The batch output includes:
 predicted_salary_usd
 ```
 
----
+## 4. Clifton – Mental Health Risk Predictor
 
-# 4. Clifton – Mental Health Risk Predictor
+**Application URL:**
 
-Open the integrated application at:
+<https://team5-app-873480729550.asia-southeast1.run.app/clifton/>
 
-```text
-https://team5-app-873480729550.asia-southeast1.run.app/clifton/
-```
-
-or locally at:
+Local route:
 
 ```text
 http://127.0.0.1:5000/clifton/
 ```
 
-The model is loaded from:
+Model artefact:
 
 ```text
 src/team5_app/Clifton/mental_health_risk_app/clifton_mental_health_risk_final_model.pkl
 ```
 
-## Single Prediction
+### Single Prediction
 
-1. Open Clifton's predictor.
-2. Enter the nine validated mental-health/lifestyle signals.
+1. Open Clifton's Mental Health Risk Predictor.
+2. Enter the nine validated mental-health and lifestyle signals.
 3. Submit the profile.
-4. The saved PyCaret classification pipeline returns Low, Moderate or High risk.
-5. The page displays model confidence and per-class probabilities when available.
+4. The saved PyCaret classification pipeline predicts the risk category.
+5. Review the predicted category, confidence and per-class probabilities when available.
 
-All numeric and binary inputs are validated again on the server before inference.
+Possible prediction categories:
 
-## Batch Prediction
+- Low
+- Moderate
+- High
 
-1. Open `/clifton/batch`.
-2. Download the CSV template or use `src/team5_app/Clifton/mental_health_risk_app/samples/clifton_batch_demo.csv`.
+Numeric and binary inputs are validated on the server before inference.
+
+### Batch Prediction
+
+The application also supports batch prediction through:
+
+```text
+/clifton/batch
+```
+
+Steps:
+
+1. Open the batch prediction route.
+2. Download the CSV template or use the sample file:
+
+   ```text
+   src/team5_app/Clifton/mental_health_risk_app/samples/clifton_batch_demo.csv
+   ```
+
 3. Upload the CSV.
-4. The application validates the complete schema and every row.
+4. The application validates the schema and individual rows.
 5. Predictions are generated in configured chunks.
 6. Review the Low/Moderate/High counts, mean confidence and preview.
-7. Download the full result CSV containing the predicted class, label and confidence.
+7. Download the full result CSV.
 
-## Health / deployment verification
+The output includes the predicted class, label and confidence.
 
-`/clifton/health` performs a deep saved-model load check. After the final Cloud Run redeploy, run:
+### Health Check and Smoke Testing
+
+The endpoint:
+
+```text
+/clifton/health
+```
+
+performs a deeper saved-model loading check.
+
+A deployment smoke-test script is also available:
 
 ```bash
 python scripts/verify_clifton_deployment.py https://team5-app-873480729550.asia-southeast1.run.app
 ```
 
-This provides repeatable evidence for both single and batch real-time prediction.
+It provides repeatable checks for Clifton's single and batch prediction endpoints.
+
 ---
 
-# E. URLs
+# E. Project URLs
 
-## Team Source Code Repository
+## Source Code Repository
 
-**GitHub repository:**
+**GitHub Repository:**
 
-https://github.com/KingBisky/IT3385_Team5_Assignment
+<https://github.com/KingBisky/IT3385_Team5_Assignment>
 
-This URL matches the repository's configured `origin` remote.
+The repository contains the source code, project configuration, model application files and MLOps workflow.
 
-## Deployed Team Web Application
+## Deployed Team 5 Application
 
-Deployed at : https://team5-app-873480729550.asia-southeast1.run.app
+**Google Cloud Run:**
 
-Pre-submission verification (completed):
+<https://team5-app-873480729550.asia-southeast1.run.app>
 
-- [x] Integrated Team 5 application deployed to Google Cloud Run.
-- [x] Public URL opened and confirmed reachable in a browser.
-- [x] Team 5 portal loads correctly.
-- [x] Kang Bin's prediction flow verified.
-- [x] Long Chen's prediction flow verified.
-- [ ] Re-verify Clifton's single + batch flow after deploying this final revision (`scripts/verify_clifton_deployment.py`)
-- [x] URL confirmed working independent of any developer's local machine.
+The deployed portal provides access to the three integrated machine learning applications.
 
 ---
 
 # MLOps Lifecycle Summary
 
+The project brings together the following workflow:
+
 ```text
 Raw datasets
     ↓
-DVC metadata/version tracking
+DVC metadata and version tracking
     ↓
 Jupyter + PyCaret model development
     ↓
@@ -1239,7 +1074,7 @@ Integrated Flask applications
     ↓
 Pytest validation
     ↓
-Feature branch
+Feature branches
     ↓
 GitHub push / Pull Request
     ↓
@@ -1247,9 +1082,11 @@ GitHub Actions CI
     ↓
 Merge to main
     ↓
-Production deployment (Google Cloud Run)
+Docker containerisation
     ↓
-Live at https://team5-app-873480729550.asia-southeast1.run.app/
+Google Cloud Run deployment
+    ↓
+Live Team 5 application
 ```
 
-Development, integration and Continuous Integration are implemented for all three applications.
+The completed project demonstrates the integration of three machine learning applications with shared dependency management, configurable runtime settings, dataset version tracking, automated testing, collaborative Git workflows, Continuous Integration and cloud deployment.
